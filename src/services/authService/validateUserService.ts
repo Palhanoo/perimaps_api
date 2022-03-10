@@ -8,7 +8,7 @@ export class ValidateUserService {
 
         const user = await repo.findOne({email});
 
-        if (!user) return new Error('Login inválido');
+        if (!user) return {success: false, message: 'Login inválido'};
 
         const {salt, key} = user;
 

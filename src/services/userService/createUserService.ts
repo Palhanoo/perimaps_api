@@ -31,10 +31,10 @@ export class CreateUserService {
         return user
     }
     
-    async create({name, email, password}: userRequestType): Promise<User | Error>{
+    async create({name, email, password}: userRequestType) {
         const repo = getRepository(User);
         //select * from categories where name = name
-        if(await this.findByEmail(email) !== undefined) return new Error("Usuário já cadastrado") 
+        if(await this.findByEmail(email) !== undefined) return {success: false, message: "Email já cadastrado"} 
 
         const {salt, key } = this.getSaltAndKey(password);
         
