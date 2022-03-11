@@ -1,6 +1,7 @@
 import { getRepository } from "typeorm";
 import * as crypto from 'crypto'
 import { User } from "../../database/entities/User";
+import {sign } from 'jsonwebtoken'
 
 type userRequestType = {
     name: string
@@ -36,7 +37,14 @@ export class CreateUserService {
         //select * from categories where name = name
         if(await this.findByEmail(email) !== undefined) return {success: false, message: "Email já cadastrado"} 
 
-        const {salt, key } = this.getSaltAndKey(password);
+        const { salt, key } = this.getSaltAndKey(password);
+
+        const payload = {
+            email,
+            password
+        }
+
+        const token = sign(JSON.stringify(payload), process.env.SECRET_KEY)
         
         const user = repo.create({
             name,
@@ -48,6 +56,6 @@ export class CreateUserService {
         
         await repo.save(user);
 
-        return user;
+        return {success:true, email: user.email, token};
     }
 }

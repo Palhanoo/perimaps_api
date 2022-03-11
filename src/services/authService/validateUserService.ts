@@ -1,6 +1,7 @@
 import { getRepository } from "typeorm";
 import * as crypto from 'crypto'
 import { User } from "../../database/entities/User";
+import { sign } from 'jsonwebtoken'
 
 export class ValidateUserService {
     async validate(email:string, password: string) {
@@ -11,6 +12,13 @@ export class ValidateUserService {
         if (!user) return {success: false, message: 'Login inválido'};
 
         const {salt, key} = user;
+
+        const payload = {
+            email,
+            password
+        }
+
+        const token = sign(JSON.stringify(payload), process.env.SECRET_KEY)
 
         if(!salt) {
             return new Error('Usuário sem senha cadastrada!');
@@ -25,9 +33,9 @@ export class ValidateUserService {
         );
 
         if(hash.toString('hex') === key) {
-            return {success: true, hash: hash.toString('hex')};
+            return {success: true, token};
         }else {
-            return new Error('Credenciais Inválidas');
+            return {success: false, message: 'Credenciais Inválidas'};
         }
     }
 }

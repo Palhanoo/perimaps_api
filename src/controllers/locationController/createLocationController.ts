@@ -3,7 +3,7 @@ import { CreateLocationService, CreateLocationType } from "../../services/locati
 
 export class CreateLocationController {
     async handle(request: Request, response: Response) {
-        const {latitude, longitude, user_id} = request.body;
+        const { latitude, longitude, user_id }: CreateLocationType = request.body;
 
         if(!latitude || !longitude || !user_id) {
             return response.status(422).json("Sem campos vazios!")
