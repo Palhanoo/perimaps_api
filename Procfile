@@ -1,1 +1,1 @@
-web: npm run tsc && npm run typeorm migration:run && node build/app.js 
+web: npm run typeorm migration:run && node build/app.js 
