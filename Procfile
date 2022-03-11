@@ -1,1 +1,1 @@
-web: npm run typeorm migration:run && node dist/app.js 
+web: node dist/app.js 
