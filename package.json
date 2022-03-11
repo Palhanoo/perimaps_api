@@ -10,7 +10,7 @@
     "build": "tsc --build",
     "tsc": "tsc",
     "start:prod": "node ./build/app.js",
-    "postinstall": "npm run tsc && node --loader ts-node/esm ./node_modules/typeorm/cli.js",
+    "postinstall": "npm run tsc && node --loader ts-node/esm ./node_modules/typeorm/cli.js migration:run",
     "typeorm": "node --loader ts-node/esm ./node_modules/typeorm/cli.js"
   },
   "keywords": [],
