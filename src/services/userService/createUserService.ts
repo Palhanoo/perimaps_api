@@ -56,6 +56,6 @@ export class CreateUserService {
         
         await repo.save(user);
 
-        return {success:true, email: user.email, token};
+        return {success:true, user: user, token};
     }
 }
