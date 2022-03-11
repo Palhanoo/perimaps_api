@@ -9,6 +9,7 @@
     "build": "tsc --build",
     "tsc": "tsc",
     "start:prod": "node ./build/app.js",
+    "postinstall": "npm run tsc",
     "typeorm": "ts-node-dev node_modules/.bin/typeorm"
   },
   "keywords": [],
