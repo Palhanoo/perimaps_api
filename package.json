@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --transpile-only src/app.ts",
     "build": "tsc --build",
+    "tsc": "tsc",
     "start:prod": "node ./build/app.js",
     "typeorm": "ts-node-dev node_modules/.bin/typeorm"
   },
