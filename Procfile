@@ -1,0 +1,1 @@
+web: npm run build && npm run typeorm migration:run && node build/app.js 
