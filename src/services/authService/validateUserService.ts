@@ -33,7 +33,7 @@ export class ValidateUserService {
         );
 
         if(hash.toString('hex') === key) {
-            return {success: true, token};
+            return {success: true, user, token};
         }else {
             return {success: false, message: 'Credenciais Inválidas'};
         }
