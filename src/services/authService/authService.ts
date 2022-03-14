@@ -14,11 +14,12 @@ export class AuthService  {
             try {
                 const payload = verify(token, process.env.SECRET_KEY) as tokenPayload
                 request.user = payload
-                console.log(payload);
                 next()
             }catch(err) {
-                return response.status(403).json({message: 'tu é gay!'})
+                return response.status(403).json({message: 'Erro no payload'})
             }
+        } else{
+            response.status(403).json('Rota privada');
         }
     }
 }

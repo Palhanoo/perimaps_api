@@ -17,9 +17,9 @@ export class CreateLocationService {
             user_id
         });
 
-        await repo.save(location);
+        const savedLocation = await repo.save(location);
 
-        return location;
+        return {success: true, location};
 
 
 
