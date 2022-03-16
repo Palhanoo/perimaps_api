@@ -3,7 +3,8 @@ import { verify } from 'jsonwebtoken'
 
 type tokenPayload = {
     email: string
-    password: string
+    google_id?: string
+    password?: string
 }
 
 export class AuthService  {
@@ -13,6 +14,7 @@ export class AuthService  {
             
             try {
                 const payload = verify(token, process.env.SECRET_KEY) as tokenPayload
+                console.log(payload)
                 request.user = payload
                 next()
             }catch(err) {
