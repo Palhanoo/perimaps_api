@@ -39,13 +39,6 @@ export class CreateUserService {
 
         const { salt, key } = this.getSaltAndKey(password);
 
-        const payload = {
-            email,
-            password
-        }
-
-        const token = sign(JSON.stringify(payload), process.env.SECRET_KEY)
-        
         const user = repo.create({
             name,
             email,
@@ -54,8 +47,15 @@ export class CreateUserService {
             key
         })
         
-        await repo.save(user);
+        const createdUser = await repo.save(user);
+        
+        const payload = {
+            email,
+            id: createdUser.id
+        }
 
+        const token = sign(JSON.stringify(payload), process.env.SECRET_KEY)
+        
         return {success:true, user: user, token};
     }
 }

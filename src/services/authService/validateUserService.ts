@@ -14,8 +14,8 @@ export class ValidateUserService {
         const {salt, key} = user;
 
         const payload = {
+            id: user.id,
             email,
-            password
         }
 
         const token = sign(JSON.stringify(payload), process.env.SECRET_KEY)

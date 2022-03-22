@@ -3,8 +3,7 @@ import { verify } from 'jsonwebtoken'
 
 type tokenPayload = {
     email: string
-    google_id?: string
-    password?: string
+    id: string
 }
 
 export class AuthService  {

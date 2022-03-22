@@ -24,13 +24,6 @@ export class CreateGoogleUserService {
 
         if(await this.findByEmail(email) !== undefined) return {success: false, message: "Email já cadastrado"} 
 
-        const payload = {
-            email,
-            google_id
-        }
-
-        const token = sign(JSON.stringify(payload), process.env.SECRET_KEY)
-        
         const user = repo.create({
             name,
             email,
@@ -38,8 +31,16 @@ export class CreateGoogleUserService {
             userPic,
         })
         
-        await repo.save(user);
+        
+        const createdUser = await repo.save(user);
 
+        const payload = {
+            email,
+            id: createdUser.id
+        }
+
+        const token = sign(JSON.stringify(payload), process.env.SECRET_KEY)
+        
         return {success:true, user: user, token};
     }
 }

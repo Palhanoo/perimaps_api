@@ -12,7 +12,7 @@ export class ValidateGoogleUserService {
 
         const payload = {
             email,
-            google_id
+            id: user.id
         }
 
         const token = sign(JSON.stringify(payload), process.env.SECRET_KEY)
