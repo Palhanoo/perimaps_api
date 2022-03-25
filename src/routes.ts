@@ -3,7 +3,7 @@ import { CreateUserController } from "./controllers/userController/createUserCon
 import { ValidateUserController } from "./controllers/authController/validateUserController";
 import { CreateLocationController } from "./controllers/locationController/createLocationController";
 import { GetAllLocationsController } from "./controllers/locationController/getAllLocationsController";
-import { AuthService } from "./services/authService/authService";
+import { AuthService } from "./middlewares/authService";
 import { CreateGoogleUserController } from "./controllers/userController/createGoogleUserController";
 import { GetAllUserLocationsController } from "./controllers/locationController/getUserLocationService";
 import { ValidateGoogleUserController } from "./controllers/authController/validateGoogleUserController";
