@@ -7,6 +7,7 @@ import { AuthService } from "./middlewares/authService";
 import { CreateGoogleUserController } from "./controllers/userController/createGoogleUserController";
 import { GetAllUserLocationsController } from "./controllers/locationController/getUserLocationService";
 import { ValidateGoogleUserController } from "./controllers/authController/validateGoogleUserController";
+import { DeleteLocationController } from "./controllers/locationController/deleteLocationController";
 
 const router = Router();
 
@@ -17,6 +18,8 @@ router.post("/login", new ValidateUserController().handle)
 router.post("/googleLogin", new ValidateGoogleUserController().handle)
 
 router.post("/createLocation", new AuthService().private, new CreateLocationController().handle)
+
+router.delete("/deleteLocation", new AuthService().private, new DeleteLocationController().handle)
 
 router.get("/getLocation", new GetAllLocationsController().handle)
 router.post("/userLocation", new AuthService().private, new GetAllUserLocationsController().handle)
