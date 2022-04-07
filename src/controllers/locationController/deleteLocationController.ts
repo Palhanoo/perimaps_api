@@ -4,9 +4,12 @@ import { DeleteLocationService, deleteType } from "../../services/locationServic
 export class DeleteLocationController {
     async handle(request: Request, response: Response) {
         const location: deleteType = request.body;
+        console.log(location)
         const service = new DeleteLocationService();
 
         const result = await service.DeleteOne(location);
+
+        console.log(result)
 
         if(result instanceof Error) {
             return response.status(400).json(result.message);
