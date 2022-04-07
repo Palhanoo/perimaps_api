@@ -19,7 +19,7 @@ router.post("/googleLogin", new ValidateGoogleUserController().handle)
 
 router.post("/createLocation", new AuthService().private, new CreateLocationController().handle)
 
-router.delete("/deleteLocation", new AuthService().private, new DeleteLocationController().handle)
+router.post("/deleteLocation", new AuthService().private, new DeleteLocationController().handle)
 
 router.get("/getLocation", new GetAllLocationsController().handle)
 router.post("/userLocation", new AuthService().private, new GetAllUserLocationsController().handle)
