@@ -12,10 +12,9 @@ export class DeleteLocationService {
 
         const specificLocation = await repo.findOne({where: {latitude: location.latitude, longitude: location.longitude}});
 
-        console.log(specificLocation);
         if(!specificLocation) throw new Error('Localidade não encontrada')
 
-        const deletedLocation = await repo.delete(specificLocation.id);
+        const deletedLocation = await repo.delete(specificLocation);
 
         return deletedLocation;
     }
